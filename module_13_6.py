@@ -17,6 +17,7 @@ kb.add(button_2)
 ikb = InlineKeyboardMarkup()
 i_button_1 = InlineKeyboardButton(text='Рассчитать норму калорий', callback_data='calories')
 i_button_2 = InlineKeyboardButton(text='Формулы расчёта', callback_data='formulas')
+ikb.row(i_button_1, i_button_2)
 
 class UserState(StatesGroup):
     age = State()
@@ -24,7 +25,7 @@ class UserState(StatesGroup):
     weight = State()
 
 @dp.message_handler(text='Рассчитать')
-async def main_menu(message):
+async def main_menu(message: types.Message):
     await message.answer('Выберите опцию:', reply_markup=ikb)
 
 @dp.callback_query_handler(text='formulas')
